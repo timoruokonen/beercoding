@@ -1,0 +1,53 @@
+<html>
+<head>
+<script type="text/javascript" src="script/jquery-1.8.3.min.js"></script>
+
+<style>
+    p {
+        display: inline;
+        color: red;
+    }
+</style>
+
+</head>
+<body>
+<div id="content">
+</div>
+
+<script type="text/javascript">
+function randomShit()
+{
+    var content = $('#content');
+    content.html("");
+    for (var i=0; i<1700; i++) {
+        content.append(createRandomComponent());
+    }
+}
+
+function createRandomComponent()
+{
+    var rnd = Math.floor((Math.random()*10)+1);    
+    var color = "#"+((1<<24)*Math.random()|0).toString(16);
+    var bcolor = "#"+((1<<24)*Math.random()|0).toString(16);
+    var width = Math.floor((Math.random()*50)+20);    
+    var style = "style='c2olor: " + color + "; background-color:" + bcolor + ";width:" + width + "'";
+    switch (rnd) {
+        case 1:
+            return "<input " + style + "></input>";
+        case 2:
+            return "<button " + style + ">Kerpele</button>";
+        case 3:
+            return "<select " + style + ">Tota</select>";
+        default:
+            return "<p " + style + ">bissee</p>";
+    }
+}
+
+randomShit();
+var interval = setInterval(randomShit,1000);
+
+</script>
+
+</body>
+</html>
+
