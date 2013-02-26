@@ -3,14 +3,48 @@
 <script type="text/javascript" src="script/jquery-1.8.3.min.js"></script>
 
 <style>
+    body {
+        background: #343434;
+    }
+    h1 {
+        color: white;
+        padding: 0px;
+        margin: 0px;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #adadad;
+        font-family: "Rockwell Extra Bold", "Rockwell Bold", monospace;        
+    }
+    h1 button {
+        position: relative;
+        top: -5px;
+        border: 1px solid red;
+        margin-left: 15px;
+        padding-top: 5px;
+        font-size: 15px;
+        font-weight: bold;
+        display: inline;
+        font-family: Papyrus, fantasy;        
+    }
     p {
         display: inline;
-        color: red;
+    }
+    input {
+        display: inline;
+    }
+    a {
+        display: inline;
+    }
+    button {
+        display: inline;
+    }
+    select {
+        display: inline;
     }
 </style>
 
 </head>
 <body>
+<h1>Randomhoto! <button id="dont" onclick="startBlinkCauseYouAskedForIt()">Don't press here!</button></h1>
 <div id="content">
 </div>
 
@@ -26,11 +60,11 @@ function randomShit()
 
 function createRandomComponent()
 {
-    var rnd = Math.floor((Math.random()*10)+1);    
+    var rnd = Math.floor((Math.random()*5)+1);    
     var color = "#"+((1<<24)*Math.random()|0).toString(16);
     var bcolor = "#"+((1<<24)*Math.random()|0).toString(16);
     var width = Math.floor((Math.random()*50)+20);    
-    var style = "style='c2olor: " + color + "; background-color:" + bcolor + ";width:" + width + "'";
+    var style = "style='color: " + color + "; background-color:" + bcolor + ";width:" + width + "'";
     switch (rnd) {
         case 1:
             return "<input " + style + "></input>";
@@ -38,13 +72,27 @@ function createRandomComponent()
             return "<button " + style + ">Kerpele</button>";
         case 3:
             return "<select " + style + ">Tota</select>";
+        case 4:
+            return "<a " + style + " href='http://paska.com'>ugh</a>";
         default:
             return "<p " + style + ">bissee</p>";
     }
 }
 
 randomShit();
-var interval = setInterval(randomShit,1000);
+var once = 0
+function startBlinkCauseYouAskedForIt()
+{
+    var interval = setInterval(randomShit,1000);
+    once++;
+    if (once == 1) {
+        $('#dont').html("Told you sucker!");
+    }
+    else if (once == 2) {
+        $('#dont').html("And there is no undo...");
+        $('#dont').attr('disabled', 'disabled');
+    }
+}
 
 </script>
 
